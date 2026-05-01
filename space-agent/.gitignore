@@ -14,3 +14,4 @@ outputs/
 pytest-cache-files-*/
 tests_tmp_output/
 tests_tmp_pdf/
+space-agent/.env
