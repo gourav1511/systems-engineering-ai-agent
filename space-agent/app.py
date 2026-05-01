@@ -32,7 +32,7 @@ st.set_page_config(page_title="Systems Engineering AI Agent", layout="wide")
 
 SAMPLE_GUI_CONTEXT = {
     "mission_name": "AlpineWatch-1",
-    "mission_type": "Earth Observation",
+    "mission_type": "Earth Observation Mission",
     "altitude_km": 550.0,
     "inclination_deg": 97.6,
     "lifetime_years": 3.0,
@@ -46,7 +46,7 @@ SAMPLE_GUI_CONTEXT = {
 
 DEFAULTS = {
     "mission_name": "AlpineWatch-1",
-    "mission_type": "Earth Observation",
+    "mission_type": "Earth Observation Mission",
     "altitude_km": 550.0,
     "inclination_deg": 97.6,
     "lifetime_years": 3.0,
@@ -169,13 +169,14 @@ def render_input_form() -> dict:
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     st.markdown('<div class="card-title">Mission Input Card</div>', unsafe_allow_html=True)
 
-    mission_name = st.text_input("Mission name", key="mission_name", max_chars=80)
-    mission_type = st.text_input("Mission type", key="mission_type", max_chars=80)
-    altitude_km = st.number_input("Altitude [km]", min_value=100.0, max_value=2000.0, value=st.session_state["altitude_km"])
-    inclination_deg = st.number_input("Inclination [deg]", min_value=0.0, max_value=180.0, value=st.session_state["inclination_deg"])
-    lifetime_years = st.number_input("Lifetime [years]", min_value=0.1, max_value=15.0, value=st.session_state["lifetime_years"])
+    mission_name = st.text_input("Mission name *", key="mission_name", max_chars=80)
+    mission_type = st.text_input("Mission type *", key="mission_type", max_chars=80)
+    st.caption("For now only EO missions are possible. Future versions will expand to other mission types.")
+    altitude_km = st.number_input("Altitude [km] *", min_value=100.0, max_value=2000.0, value=st.session_state["altitude_km"])
+    inclination_deg = st.number_input("Inclination [deg] *", min_value=0.0, max_value=180.0, value=st.session_state["inclination_deg"])
+    lifetime_years = st.number_input("Lifetime [years] *", min_value=0.1, max_value=15.0, value=st.session_state["lifetime_years"])
     payload_details = st.text_area(
-        "Payload details",
+        "Payload details *",
         value=st.session_state["payload_details"],
         height=110,
         max_chars=3000,
@@ -431,6 +432,18 @@ def main() -> None:
                 "mission_scope": "single_satellite",
                 "payload_type": "earth_observation",
             }
+
+            missing_fields = []
+            if not str(gui_context["mission_name"]).strip():
+                missing_fields.append("Mission name")
+            if not str(gui_context["mission_type"]).strip():
+                missing_fields.append("Mission type")
+            if not str(gui_context["payload_details"]).strip():
+                missing_fields.append("Payload details")
+            if missing_fields:
+                st.error(f"Please complete all required fields: {', '.join(missing_fields)}.")
+                st.session_state["is_generating"] = False
+                return
 
             validated_gui = validate_gui_mission_context(gui_context)
             warning = payload_details_quality_warning(validated_gui.payload_details)
