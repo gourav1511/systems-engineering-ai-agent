@@ -11,6 +11,7 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 from config import OUTPUTS_DIR
+from utils.deployment_utils import sanitize_mission_name
 
 
 DISCLAIMER_TEXT = (
@@ -141,7 +142,7 @@ class ProposalBuilder:
         doc.add_heading("Disclaimer", level=1)
         doc.add_paragraph(DISCLAIMER_TEXT)
 
-        safe_name = mission_context["mission_name"].replace(" ", "_")
+        safe_name = sanitize_mission_name(mission_context["mission_name"])
         path = OUTPUTS_DIR / f"Phase_0_Proposal_{safe_name}.docx"
         doc.save(path)
         return path

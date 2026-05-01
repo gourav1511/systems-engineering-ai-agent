@@ -1594,3 +1594,204 @@ subsystems.8.notes
     "Confirm debris-mitigation approach and any end-of-life delta-v requirement, which could materially change propulsion sizing."
   ]
 }
+
+
+[2026-05-01T12:31:50.500437Z] First parse/validation failure: 28 validation errors for MassOutput
+subsystems.0.mass_kg
+  Field required [type=missing, input_value={'name': 'Structure', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.0.margin_pct
+  Field required [type=missing, input_value={'name': 'Structure', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.0.notes
+  Field required [type=missing, input_value={'name': 'Structure', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.1.mass_kg
+  Field required [type=missing, input_value={'name': 'ADCS', 'mass_wi...ter are not specified.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.1.margin_pct
+  Field required [type=missing, input_value={'name': 'ADCS', 'mass_wi...ter are not specified.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.2.mass_kg
+  Field required [type=missing, input_value={'name': 'Propulsion', 'm...voidance requirements.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.2.margin_pct
+  Field required [type=missing, input_value={'name': 'Propulsion', 'm...voidance requirements.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.3.mass_kg
+  Field required [type=missing, input_value={'name': 'Communications'...nk rate are undefined.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.3.margin_pct
+  Field required [type=missing, input_value={'name': 'Communications'...nk rate are undefined.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.4.mass_kg
+  Field required [type=missing, input_value={'name': 'OBC/Data Handli...ned image data volume.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.4.margin_pct
+  Field required [type=missing, input_value={'name': 'OBC/Data Handli...ned image data volume.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.5.mass_kg
+  Field required [type=missing, input_value={'name': 'EPS/Power', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.5.margin_pct
+  Field required [type=missing, input_value={'name': 'EPS/Power', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.5.notes
+  Field required [type=missing, input_value={'name': 'EPS/Power', 'ma... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.6.mass_kg
+  Field required [type=missing, input_value={'name': 'Thermal', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.6.margin_pct
+  Field required [type=missing, input_value={'name': 'Thermal', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.6.notes
+  Field required [type=missing, input_value={'name': 'Thermal', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.7.mass_kg
+  Field required [type=missing, input_value={'name': 'Payload', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.7.margin_pct
+  Field required [type=missing, input_value={'name': 'Payload', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.7.notes
+  Field required [type=missing, input_value={'name': 'Payload', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.8.mass_kg
+  Field required [type=missing, input_value={'name': 'Harness', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.8.margin_pct
+  Field required [type=missing, input_value={'name': 'Harness', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+subsystems.8.notes
+  Field required [type=missing, input_value={'name': 'Harness', 'mass... 'confidence': 'medium'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+total_dry_mass_kg
+  Field required [type=missing, input_value={'mission_name': 'AlpineW... increase materially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+total_wet_mass_kg
+  Field required [type=missing, input_value={'mission_name': 'AlpineW... increase materially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+mass_margin_pct
+  Field required [type=missing, input_value={'mission_name': 'AlpineW... increase materially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+status
+  Input should be 'GREEN', 'YELLOW' or 'RED' [type=literal_error, input_value={'color': 'YELLOW', 'reas...be treated cautiously.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/literal_error
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'AlpineW... increase materially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "AlpineWatch-1",
+  "estimate_type": "preliminary_mass_budget",
+  "confidence": "low",
+  "confidence_reasons": [
+    "Launch vehicle and allowable wet mass are not specified.",
+    "Payload data rate, onboard storage, and downlink rate requirements are not defined.",
+    "Pointing stability/knowledge requirements are not defined and strongly affect ADCS sizing for 5 m GSD imaging.",
+    "Propulsion need is explicitly uncertain in mission assumptions.",
+    "Disposal approach and any collision avoidance delta-v are not defined.",
+    "Detailed payload optical aperture and mechanical envelope are not provided."
+  ],
+  "assumptions": [
+    "Small EO microsatellite class spacecraft sized around an 8 kg, 35 W multispectral payload.",
+    "No major orbit maintenance propulsion required for nominal mission; only minimal cold-gas or equivalent capability allocated for trim/desaturation/contingency reserve.",
+    "Moderate agility and EO imaging pointing performance, but not ultra-high-stability sub-meter-class performance.",
+    "Deployable solar arrays and batteries sized to support payload operations in sunlit passes and housekeeping through eclipse.",
+    "X-band or high-rate S-band payload downlink with sufficient onboard storage for routine EO operations.",
+    "Developer rule applied: 20% mass margin added to every subsystem estimate."
+  ],
+  "subsystems": [
+    {
+      "name": "Structure",
+      "mass_without_margin_kg": 10.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 12.0,
+      "basis": "Primary and secondary structure for small EO spacecraft, deployment mechanisms/supports, launch interface.",
+      "confidence": "medium"
+    },
+    {
+      "name": "ADCS",
+      "mass_without_margin_kg": 7.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 8.4,
+      "basis": "Star tracker(s), sun sensors, IMU, reaction wheels, magnetorquers, GNSS receiver; sized for nadir imaging and moderate pointing performance.",
+      "confidence": "low",
+      "notes": "Low confidence because required pointing knowledge, control error, and jitter are not specified."
+    },
+    {
+      "name": "Propulsion",
+      "mass_without_margin_kg": 3.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 3.6,
+      "basis": "Minimal propulsion allocation including tank, valves, thrusters, and propellant reserve for trim/contingency/end-of-life flexibility.",
+      "confidence": "low",
+      "notes": "Mission assumptions indicate propulsion may be unnecessary or may grow materially depending on disposal/collision-avoidance requirements."
+    },
+    {
+      "name": "Communications",
+      "mass_without_margin_kg": 4.5,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 5.4,
+      "basis": "TT&C radio, higher-rate payload downlink chain, antennas, RF conditioning.",
+      "confidence": "low",
+      "notes": "Low confidence because daily data volume, latency, ground network, and downlink rate are undefined."
+    },
+    {
+      "name": "OBC/Data Handling",
+      "mass_without_margin_kg": 3.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 3.6,
+      "basis": "Flight computer, mass memory, interface electronics, timing distribution.",
+      "confidence": "low",
+      "notes": "Mass memory requirement is highly uncertain due to undefined image data volume."
+    },
+    {
+      "name": "EPS/Power",
+      "mass_without_margin_kg": 10.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 12.0,
+      "basis": "Solar arrays, battery, power conditioning and distribution sized for 35 W payload plus bus loads over eclipse cycles.",
+      "confidence": "medium"
+    },
+    {
+      "name": "Thermal",
+      "mass_without_margin_kg": 3.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 3.6,
+      "basis": "MLI, coatings, straps, thermostats, survival/operational heaters, radiators as needed.",
+      "confidence": "medium"
+    },
+    {
+      "name": "Payload",
+      "mass_without_margin_kg": 8.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 9.6,
+      "basis": "Given payload mass from mission context.",
+      "confidence": "medium"
+    },
+    {
+      "name": "Harness",
+      "mass_without_margin_kg": 2.0,
+      "margin_percent": 20.0,
+      "mass_with_margin_kg": 2.4,
+      "basis": "Electrical harness and connectors across bus and payload.",
+      "confidence": "medium"
+    }
+  ],
+  "totals": {
+    "total_dry_mass_kg": 60.6,
+    "total_wet_mass_kg": 60.6,
+    "overall_margin_percentage": 20.0
+  },
+  "status": {
+    "color": "YELLOW",
+    "reason": "Launch capability is unknown, so launcher compatibility cannot be verified. Preliminary estimate uses standard 20% subsystem margins only; compatibility margin to launcher remains an open issue and should be treated cautiously."
+  },
+  "open_issues": [
+    "Launch vehicle accommodation constraints, especially maximum wet mass and volume, are not defined.",
+    "Payload data volume and required downlink performance could materially increase Communications, OBC/Data Handling, and EPS mass.",
+    "Imaging stability requirements could materially increase ADCS mass.",
+    "If propulsion is required for disposal, collision avoidance, or orbit maintenance, wet mass will increase materially."
+  ]
+}

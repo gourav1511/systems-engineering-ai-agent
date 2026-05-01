@@ -1,4 +1,4 @@
-ï»¿# space-agent
+# space-agent
 
 `space-agent` is a Python 3.11+ CLI tool that generates a Phase 0 spacecraft mission proposal Word document from mission context input.
 
@@ -108,6 +108,24 @@ outputs/Phase_0_Proposal_<mission_name>.docx
 - Add PDF export and optional web UI.
 - Add persistent mission history and report comparison workflows.
 
-## Deployment note
+## Deployment Security Notes
 
-This Streamlit version is intended for MVP validation. A future Vercel deployment would require either a React/Next.js frontend with a Python API backend, or migration to a platform that supports Streamlit directly.
+- A private GitHub repository does not automatically make the deployed app private.
+- Do not commit `.env` files or API keys.
+- Configure `OPENAI_API_KEY` in the deployment platform’s environment variables.
+- For Vercel, add `OPENAI_API_KEY` under Project Settings -> Environment Variables.
+- Do not use `NEXT_PUBLIC_OPENAI_API_KEY` because `NEXT_PUBLIC` variables are exposed to browser-side code in Next.js.
+- Add `APP_PASSWORD` or use platform-level deployment protection before sharing the app publicly.
+- Generated outputs are ignored by Git and should not be committed.
+- Keep OpenAI calls server-side only.
+
+## Vercel Notes
+
+- This Streamlit MVP may not be the ideal final architecture for Vercel. A production Vercel version should use a Next.js frontend with server-side API routes or a separate Python backend. The OpenAI API key must remain server-side only.
+- If deploying a Next.js version to Vercel, API calls to OpenAI must happen in server-side API routes.
+- Do not place OpenAI API calls directly in browser components.
+- Do not prefix the OpenAI key with `NEXT_PUBLIC_`.
+- Use Vercel Deployment Protection where available.
+- Vercel Authentication is available on all plans.
+- Password Protection is available on Enterprise or as a paid add-on for Pro.
+- Production domains may remain public depending on the selected Vercel protection scope.

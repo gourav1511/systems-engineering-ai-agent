@@ -1,0 +1,16 @@
+.env
+.env.local
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.pyc
+outputs/
+*.docx
+*.pdf
+.pytest_cache/
+.pytest_tmp/
+pytest-cache-files-*/
+tests_tmp_output/
+tests_tmp_pdf/

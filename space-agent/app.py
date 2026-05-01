@@ -9,9 +9,18 @@ from pathlib import Path
 import streamlit as st
 
 from assembler.pdf_builder import build_pdf_proposal
-from config import ConfigError, OUTPUTS_DIR
+from config import ConfigError, OUTPUTS_DIR, require_api_key
 from coordinator import Coordinator
 from schemas.output_schemas import MissionContext
+from utils.deployment_utils import (
+    MAX_GENERATIONS_PER_SESSION,
+    generation_limit_reached,
+    get_app_password,
+    has_demo_password,
+    is_production_mode,
+    sanitize_mission_name,
+    verify_password,
+)
 from utils.mission_context_adapter import (
     build_agent_mission_context,
     payload_details_quality_warning,
@@ -50,6 +59,9 @@ DEFAULTS = {
     "warnings": [],
     "progress_tracker": None,
     "pipeline_failures": [],
+    "authenticated": False,
+    "generation_count": 0,
+    "is_generating": False,
 }
 
 
@@ -97,6 +109,35 @@ def inject_css() -> None:
     )
 
 
+def render_sidebar_security() -> None:
+    st.sidebar.markdown("### Security")
+    if has_demo_password():
+        st.sidebar.success("Demo access protection is enabled.")
+    else:
+        st.sidebar.warning(
+            "Demo access protection is disabled. Set APP_PASSWORD before public deployment."
+        )
+
+
+def enforce_access_gate() -> None:
+    app_password = get_app_password()
+    if not app_password:
+        st.session_state["authenticated"] = True
+        return
+    if st.session_state.get("authenticated"):
+        return
+
+    st.markdown("### Demo Access")
+    entered = st.text_input("Enter demo password", type="password", key="app_password_input")
+    if st.button("Unlock App", use_container_width=True):
+        if verify_password(entered, app_password):
+            st.session_state["authenticated"] = True
+            st.rerun()
+        else:
+            st.error("Incorrect password.")
+    st.stop()
+
+
 def render_hero() -> None:
     st.markdown(
         """
@@ -128,8 +169,8 @@ def render_input_form() -> dict:
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     st.markdown('<div class="card-title">Mission Input Card</div>', unsafe_allow_html=True)
 
-    mission_name = st.text_input("Mission name", key="mission_name")
-    mission_type = st.text_input("Mission type", key="mission_type")
+    mission_name = st.text_input("Mission name", key="mission_name", max_chars=80)
+    mission_type = st.text_input("Mission type", key="mission_type", max_chars=80)
     altitude_km = st.number_input("Altitude [km]", min_value=100.0, max_value=2000.0, value=st.session_state["altitude_km"])
     inclination_deg = st.number_input("Inclination [deg]", min_value=0.0, max_value=180.0, value=st.session_state["inclination_deg"])
     lifetime_years = st.number_input("Lifetime [years]", min_value=0.1, max_value=15.0, value=st.session_state["lifetime_years"])
@@ -137,19 +178,14 @@ def render_input_form() -> dict:
         "Payload details",
         value=st.session_state["payload_details"],
         height=110,
+        max_chars=3000,
         placeholder=(
             "Example: Multispectral Earth Observation payload with 40 km swath width, 5 m GSD, "
             "8 kg payload mass, and 35 W nominal power consumption."
         ),
     )
 
-    c1, c2, c3 = st.columns([1.2, 1.1, 0.8])
-    with c1:
-        generate_clicked = st.button("Generate Proposal", type="primary", use_container_width=True)
-    with c2:
-        load_clicked = st.button("Load Sample EO Mission", use_container_width=True)
-    with c3:
-        clear_clicked = st.button("Clear Inputs", use_container_width=True)
+    generate_clicked = st.button("Generate Proposal", type="primary", use_container_width=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -161,8 +197,6 @@ def render_input_form() -> dict:
         "lifetime_years": lifetime_years,
         "payload_details": payload_details,
         "generate_clicked": generate_clicked,
-        "load_clicked": load_clicked,
-        "clear_clicked": clear_clicked,
     }
 
 
@@ -289,7 +323,10 @@ def render_results_tabs(outputs: dict, gui_ctx: dict | None, agent_ctx: dict | N
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 type="primary",
             )
-            st.caption(f"Generated DOCX path: `{docx_path}`")
+            if is_production_mode():
+                st.caption(f"Generated DOCX file: `{Path(docx_path).name}`")
+            else:
+                st.caption(f"Generated DOCX path: `{docx_path}`")
         st.caption("DOCX is the primary export format so the generated draft can be reviewed, edited, and corrected before use.")
 
         if pdf_path and Path(pdf_path).exists():
@@ -323,6 +360,14 @@ def render_footer() -> None:
 def main() -> None:
     init_state()
     inject_css()
+    render_sidebar_security()
+    enforce_access_gate()
+    try:
+        require_api_key()
+    except ConfigError:
+        st.info(
+            "OPENAI_API_KEY is not configured yet. Set it in local .env or in your deployment platform environment variables."
+        )
 
     render_hero()
     render_scope_notice()
@@ -331,22 +376,16 @@ def main() -> None:
     with left_col:
         inputs = render_input_form()
 
-    if inputs["load_clicked"]:
-        for key in ["mission_name", "mission_type", "altitude_km", "inclination_deg", "lifetime_years", "payload_details"]:
-            st.session_state[key] = SAMPLE_GUI_CONTEXT[key]
-        st.rerun()
-
-    if inputs["clear_clicked"]:
-        st.session_state["mission_name"] = ""
-        st.session_state["mission_type"] = "Earth Observation"
-        st.session_state["altitude_km"] = 550.0
-        st.session_state["inclination_deg"] = 97.6
-        st.session_state["lifetime_years"] = 3.0
-        st.session_state["payload_details"] = ""
-        st.session_state["warnings"] = []
-        st.rerun()
-
     if inputs["generate_clicked"]:
+        if st.session_state.get("is_generating"):
+            st.warning("Generation is already in progress.")
+            return
+        if generation_limit_reached(st.session_state.get("generation_count", 0)):
+            st.error(
+                "You have reached the demo generation limit for this session. Restart the session or run locally to continue."
+            )
+            return
+
         tracker = {
             "Mission Analysis": "Waiting",
             "Mass Budget": "Waiting",
@@ -356,6 +395,7 @@ def main() -> None:
             "Proposal Assembly": "Waiting",
         }
         st.session_state["progress_tracker"] = tracker
+        st.session_state["is_generating"] = True
         live_progress = st.progress(0.0)
         live_status = st.empty()
 
@@ -372,6 +412,15 @@ def main() -> None:
             live_status.markdown("\n".join(lines))
 
         try:
+            try:
+                require_api_key()
+            except ConfigError as exc:
+                st.error(
+                    f"Setup required: {exc} Set OPENAI_API_KEY in local .env or deployment environment variables."
+                )
+                st.session_state["is_generating"] = False
+                return
+
             gui_context = {
                 "mission_name": inputs["mission_name"],
                 "mission_type": inputs["mission_type"],
@@ -392,7 +441,14 @@ def main() -> None:
             st.session_state["parsed_mission_context"] = validated_gui.model_dump()
             st.session_state["agent_mission_context"] = agent_context_dict
 
-            progress_bar = st.progress(0.0)
+            old_docx = st.session_state.get("generated_docx_path")
+            old_pdf = st.session_state.get("generated_pdf_path")
+            for old in [old_docx, old_pdf]:
+                if old and Path(old).exists():
+                    try:
+                        Path(old).unlink()
+                    except OSError:
+                        pass
 
             step_map = {
                 "Mission analysis": "Mission Analysis",
@@ -420,8 +476,9 @@ def main() -> None:
             st.session_state["agent_outputs"] = run_result["outputs"]
             st.session_state["generated_docx_path"] = str(run_result["docx_path"])
             st.session_state["pipeline_failures"] = run_result.get("failures", [])
+            st.session_state["generation_count"] = st.session_state.get("generation_count", 0) + 1
 
-            mission_safe = agent_context.mission_name.replace(" ", "_")
+            mission_safe = sanitize_mission_name(agent_context.mission_name)
             pdf_name = f"Phase_0_Proposal_{mission_safe}.pdf"
             pdf_path = OUTPUTS_DIR / pdf_name
             try:
@@ -442,6 +499,16 @@ def main() -> None:
             st.session_state["progress_tracker"] = tracker
             _render_live_tracker()
             st.error(f"Setup required: {exc} (see .env and OPENAI_API_KEY).")
+        except TimeoutError:
+            tracker["Mission Analysis"] = "Failed"
+            st.session_state["progress_tracker"] = tracker
+            _render_live_tracker()
+            st.error("OpenAI request timed out. Please retry.")
+        except ConnectionError:
+            tracker["Mission Analysis"] = "Failed"
+            st.session_state["progress_tracker"] = tracker
+            _render_live_tracker()
+            st.error("OpenAI connection failed. Check network or API availability, then retry.")
         except Exception as exc:
             failed_set = False
             for step_name, value in tracker.items():
@@ -454,10 +521,15 @@ def main() -> None:
             st.session_state["progress_tracker"] = tracker
             _render_live_tracker()
             st.error(f"Generation failed: {exc}")
+        finally:
+            st.session_state["is_generating"] = False
 
     with right_col:
         st.markdown('<div class="summary-card">', unsafe_allow_html=True)
         st.markdown('<div class="card-title">Output Parameters</div>', unsafe_allow_html=True)
+        st.caption(
+            f"Session generations used: {st.session_state.get('generation_count', 0)}/{MAX_GENERATIONS_PER_SESSION}"
+        )
 
         if st.session_state.get("warnings"):
             for warning in st.session_state["warnings"]:

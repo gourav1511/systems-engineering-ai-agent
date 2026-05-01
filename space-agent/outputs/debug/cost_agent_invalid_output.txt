@@ -834,3 +834,70 @@ cost_breakdown
     "If the payload can be implemented largely from flight-proven COTS components and launch is secured via subsidized rideshare, total cost could decrease."
   ]
 }
+
+
+[2026-05-01T12:32:22.491215Z] First parse/validation failure: 1 validation error for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'AlpineW..., 'recommendations': []}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "AlpineWatch-1",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "estimate_basis": {
+    "primary_method": "ROM engineering estimate using parametric smallsat cost scaling from dry mass, payload class, mission lifetime, and assumed rideshare launch/service approach",
+    "secondary_method": "analogy and engineering judgment against small Earth observation microsatellite missions with comparable payload complexity and LEO operations",
+    "notes": [
+      "Estimate is non-contractual and not a procurement quote.",
+      "Phase 0 uncertainty is high because launch vehicle, downlink data volume, pointing stability, geolocation accuracy, calibration concept, and disposal approach are not yet fixed.",
+      "Dry mass basis used: 56.4 kg.",
+      "Payload class basis used: small multispectral EO payload, 5 m GSD, 40 km swath, 8 kg stated payload mass.",
+      "Mission lifetime basis used: 3 years operational life in 550 km sun-synchronous-like LEO."
+    ]
+  },
+  "assumptions": [
+    "Single spacecraft mission with one multispectral EO payload.",
+    "Commercial smallsat-class spacecraft bus with moderate EO pointing performance.",
+    "Launch procured as a rideshare or other shared-launch service because no launch vehicle is specified.",
+    "Basic mission operations and a modest ground segment using leased or mixed ground-station services, not a dedicated global network.",
+    "No major technology development program, qualification of novel detectors, or extensive propulsion development included.",
+    "Typical Phase A/B/C/D effort for a first mission in this class with standard environmental test campaign.",
+    "3-year routine operations after commissioning are included.",
+    "Contingency selected near the high end of the allowed range due to unresolved technical and programmatic drivers."
+  ],
+  "cost_breakdown_kEUR": {
+    "Spacecraft_Hardware": 12100,
+    "Integration_and_Test": 3600,
+    "Launch": 7800,
+    "Ground_Segment": 1700,
+    "Operations": 2400,
+    "Program_Management": 3000,
+    "Contingency": 8840
+  },
+  "contingency_pct": 27,
+  "subtotal_pre_contingency_kEUR": 30600,
+  "total_cost_kEUR": 39440,
+  "confidence": "LOW",
+  "confidence_rationale": [
+    "Normal Phase 0 estimate with substantial open questions.",
+    "Launch vehicle and launch service assumptions are not fixed.",
+    "Payload data rate, storage, and downlink architecture are not yet defined and could materially affect avionics, comms, ground segment, and operations cost.",
+    "Pointing/jitter and geolocation requirements are not yet closed and could drive ADCS and payload complexity upward.",
+    "End-of-life disposal and any collision avoidance capability remain uncertain."
+  ],
+  "category_rationale": {
+    "Spacecraft_Hardware": "Includes bus subsystems and payload realization/procurement for a ~56 kg dry-mass Earth observation microsatellite with moderate imaging capability.",
+    "Integration_and_Test": "Includes assembly, integration, verification, environmental testing, system-level test support, and launch campaign preparation.",
+    "Launch": "Assumes commercial shared launch/rideshare procurement to 550 km SSO-like orbit, including integration fees and typical mission assurance allowances.",
+    "Ground_Segment": "Includes TT&C and payload data handling ground infrastructure, mission planning, initial software/tools, and access to external station services at modest scale.",
+    "Operations": "Includes commissioning and 3 years of routine spacecraft and payload operations, flight dynamics support, anomaly response, and basic calibration/monitoring activities.",
+    "Program_Management": "Includes systems engineering, project management, product assurance, configuration management, reviews, and documentation.",
+    "Contingency": "Set at 27% because of low maturity and unresolved drivers in launch, data volume, ADCS performance, and disposal concept."
+  },
+  "notes": [
+    "This ROM is appropriate only for early trade studies and planning.",
+    "If a dedicated launcher is selected instead of rideshare, launch cost could increase materially.",
+    "If higher data throughput, tighter geolocation, stricter pointing stability, or onboard calibration hardware are required, spacecraft hardware, I&T, and operations costs may rise noticeably.",
+    "If an existing flight-proven bus and payload heritage can be explicitly demonstrated, confidence could improve and contingency may be reduced in later phases."
+  ]
+}
