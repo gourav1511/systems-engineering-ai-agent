@@ -1,0 +1,7 @@
+openai
+python-dotenv
+pydantic>=2
+python-docx
+pytest
+streamlit
+reportlab

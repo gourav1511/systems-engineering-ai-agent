@@ -1,0 +1,836 @@
+
+
+[2026-04-30T22:48:47.668009Z] First parse/validation failure: 4 validation errors for CostOutput
+cost_breakdown
+  Input should be a valid list [type=list_type, input_value={'Spacecraft Hardware': {...n/compliance impacts.'}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+total_cost_kEUR
+  Field required [type=missing, input_value={'mission_name': 'AlpineW...ecture are baselined.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+assumptions
+  Field required [type=missing, input_value={'mission_name': 'AlpineW...ecture are baselined.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'AlpineW...ecture are baselined.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "AlpineWatch-1",
+  "estimate_type": "Phase 0 ROM cost estimate",
+  "currency": "kEUR",
+  "estimate_basis": {
+    "primary_method": "Parametric model with analogy and engineering judgment",
+    "description": "Estimate derived from analogous small Earth-observation microsatellite missions in the ~60-80 kg class, adjusted using engineering judgment for a 5 m GSD multispectral payload, relatively demanding ADCS/jitter performance, Falcon 9 Transporter rideshare launch, 3-year operations, and an early-phase requirement set with several open questions on data volume, ground architecture, and propulsion need."
+  },
+  "confidence": "LOW",
+  "notional_only": true,
+  "disclaimer": "This is a preliminary Phase 0 rough-order-of-magnitude estimate for planning purposes only and is not a contractual, bid, or final procurement cost.",
+  "technical_basis": {
+    "mission_type": "Earth observation / remote sensing",
+    "orbit": "550 km sun-synchronous orbit, 10:30 LTAN",
+    "lifetime_years": 3.0,
+    "launch_vehicle": "Falcon 9 Transporter rideshare",
+    "payload_summary": "Multispectral camera, 5 m GSD, 40 km swath, 8 kg payload, 35 W nominal power",
+    "spacecraft_mass_basis": {
+      "dry_mass_kg": 66.6,
+      "wet_mass_kg": 66.6,
+      "propulsion_assumed": false
+    },
+    "key_cost_drivers": [
+      "EO imaging payload performance at 5 m GSD",
+      "Pointing knowledge/control and low jitter requirements",
+      "Daily downlink requirement with unspecified payload data volume",
+      "Rideshare compatibility and environmental qualification",
+      "3-year mission operations and calibration/product support",
+      "Open uncertainty regarding need for propulsion or enhanced collision avoidance capability"
+    ],
+    "major_assumptions": [
+      "Single spacecraft mission",
+      "No onboard propulsion baseline",
+      "One Falcon 9 Transporter rideshare slot",
+      "Modest ground segment with leased/commercial station support or limited dedicated infrastructure",
+      "Routine daily contact and nominal direct-to-ground downlink architecture",
+      "No major non-recurring constellation, inter-satellite relay, or bespoke launch integration campaign costs"
+    ]
+  },
+  "cost_breakdown": {
+    "Spacecraft Hardware": {
+      "value_kEUR": 9800,
+      "range_kEUR": {
+        "min": 7200,
+        "max": 12800
+      },
+      "notes": "Includes platform subsystems, payload flight hardware, avionics, ADCS, EPS, communications, structure, thermal, harness, flight software, and spacecraft-level non-recurring engineering. Elevated versus a simple cubesat due to EO payload and pointing/jitter requirements."
+    },
+    "Integration & Test": {
+      "value_kEUR": 3200,
+      "range_kEUR": {
+        "min": 2200,
+        "max": 4500
+      },
+      "notes": "Includes subsystem integration, spacecraft AIT, environmental testing, payload calibration support, rideshare interface verification, and launch campaign preparation."
+    },
+    "Launch": {
+      "value_kEUR": 1800,
+      "range_kEUR": {
+        "min": 1300,
+        "max": 2500
+      },
+      "notes": "Assumes Falcon 9 Transporter rideshare procurement plus typical integration/interface support allocations for a spacecraft in this mass class; excludes major late manifest changes."
+    },
+    "Ground Segment": {
+      "value_kEUR": 1500,
+      "range_kEUR": {
+        "min": 900,
+        "max": 2600
+      },
+      "notes": "Includes mission control system, TT&C interfaces, data reception chain, planning tools, basic payload processing and archive setup, cybersecurity/IT provisioning, and station access setup. High uncertainty because station architecture and data volume are not defined."
+    },
+    "Operations": {
+      "value_kEUR": 2400,
+      "range_kEUR": {
+        "min": 1600,
+        "max": 3600
+      },
+      "notes": "Covers LEOP/commissioning, routine spacecraft operations, payload tasking, calibration maintenance, anomaly response, data handling support, and end-of-life activities over 3 years."
+    },
+    "Program Management": {
+      "value_kEUR": 2800,
+      "range_kEUR": {
+        "min": 2000,
+        "max": 3800
+      },
+      "notes": "Includes project management, systems engineering, product assurance, configuration management, regulatory/licensing support, schedule/risk management, and customer/review support."
+    },
+    "Contingency": {
+      "value_kEUR": 6450,
+      "percentage_of_pre_contingency": 30,
+      "range_kEUR": {
+        "min": 4560,
+        "max": 8910
+      },
+      "notes": "30% contingency applied due to Phase 0 maturity, unresolved payload data-volume and ground-segment sizing, low-confidence ADCS/jitter closure, and possible future propulsion/compliance impacts."
+    }
+  },
+  "totals": {
+    "pre_contingency_total_kEUR": 21500,
+    "total_with_contingency_kEUR": 27950,
+    "rounded_total_kEUR": 28000,
+    "rough_range_total_kEUR": {
+      "min": 19800,
+      "max": 38100
+    }
+  },
+  "cost_profile_assessment": {
+    "largest_cost_elements": [
+      "Spacecraft Hardware",
+      "Contingency",
+      "Integration & Test",
+      "Program Management"
+    ],
+    "affordability_observation": "The mission appears consistent with a low-cost microsatellite Earth-observation mission, but the 5 m imaging performance and jitter requirement push it above a minimal smallsat demonstration budget."
+  },
+  "uncertainty_and_risk_notes": [
+    "Payload spectral bands, detector complexity, and calibration concept are not yet defined and could materially change payload cost.",
+    "ADCS performance needed to satisfy 0.01 deg RMS jitter may require higher-end sensors, wheels, structural stiffness, or fine stabilization measures.",
+    "Daily data volume and downlink rate are not defined, creating substantial uncertainty in communications hardware and ground segment sizing.",
+    "A no-propulsion concept may not survive later debris mitigation, collision avoidance, or licensing review without design change.",
+    "Ground segment scope can vary significantly depending on use of commercial networks versus dedicated infrastructure and on data product processing depth."
+  ],
+  "recommended_phase_a_refinements": [
+    "Close payload data volume, downlink rate, and onboard storage requirements.",
+    "Perform optical-payload and ADCS integrated performance analysis, especially jitter and smear closure.",
+    "Define the ground segment architecture and level of data product processing automation.",
+    "Confirm regulatory, debris-mitigation, and launch-provider acceptance of a propulsion-free design.",
+    "Refine launch cost with current Transporter pricing and integrator/interface assumptions.",
+    "Re-estimate with subsystem vendor quotes or explicit analogies once payload and bus architecture are baselined."
+  ]
+}
+
+
+[2026-05-01T11:10:47.026238Z] First parse/validation failure: 4 validation errors for CostOutput
+cost_breakdown
+  Input should be a valid list [type=list_type, input_value={'Spacecraft Hardware': {...Cost': {'value': 44196}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+total_cost_kEUR
+  Field required [type=missing, input_value={'mission_name': 'NewSat'...ning placeholder only.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+assumptions
+  Field required [type=missing, input_value={'mission_name': 'NewSat'...ning placeholder only.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'NewSat'...ning placeholder only.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "NewSat",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "estimate_basis": [
+    "Parametric model",
+    "Analogy to small LEO Earth observation satellite missions",
+    "Engineering judgment"
+  ],
+  "confidence": "LOW",
+  "disclaimer": "This is a rough order of magnitude Phase 0 estimate for early planning only and is not a contractual, bid, or final procurement cost.",
+  "inputs_summary": {
+    "mission_type": "Earth ObservationSa",
+    "orbit": "550 km circular orbit, 97.6 deg inclination",
+    "lifetime_years": 3.0,
+    "payload_description": "Swath Width: 40 km, GSD: 1m, payload mass: 40kg, nominal power: 60W",
+    "estimated_wet_mass_kg": 139.4,
+    "estimated_dry_mass_kg": 134.4,
+    "launch_vehicle": "Not specified"
+  },
+  "assumptions_used_for_costing": [
+    "Single small Earth observation spacecraft in LEO with one optical imaging payload.",
+    "Spacecraft wet mass approximately 140 kg based on provided mass estimate.",
+    "Payload is a moderate-performance commercial-class EO instrument, not a high-end defense-class system.",
+    "Mission is an MVP-style single-satellite implementation with limited redundancy and pragmatic qualification approach.",
+    "Ground segment uses a lean architecture with one primary mission operations chain and outsourced or partially shared station services where practical.",
+    "Launch is procured as a rideshare or equivalent low-cost access option because no dedicated launcher is specified.",
+    "Data processing covers basic payload data reception, processing, archiving, and delivery, but not a large enterprise analytics platform.",
+    "Operations cover commissioning plus 3 years routine mission operations.",
+    "No unusual security, radiation-hard, formation flying, propulsion-intensive, or very high-rate downlink requirements are included beyond the current Phase 0 inputs."
+  ],
+  "cost_breakdown": {
+    "Spacecraft Hardware": {
+      "value": 14200,
+      "notes": "Includes spacecraft bus subsystems and payload hardware procurement/manufacture for a ~140 kg small EO satellite with 1 m-class imaging intent. Cost is elevated by EO payload performance and ADCS requirements."
+    },
+    "Integration & Test": {
+      "value": 4200,
+      "notes": "Includes AIT planning, engineering model support as needed, environmental test campaign, system verification, and launch-site preparation."
+    },
+    "Launch": {
+      "value": 7000,
+      "notes": "Assumes rideshare-class launch procurement with dispenser/interface services and typical mission integration costs. Large uncertainty because launch vehicle is not specified."
+    },
+    "Ground Segment": {
+      "value": 2500,
+      "notes": "Includes mission control software/functions, payload data reception interfaces, processing pipeline, archiving, and delivery capability for a lean initial service."
+    },
+    "Operations": {
+      "value": 3300,
+      "notes": "Includes LEOP/commissioning support and approximately 3 years of routine spacecraft and payload operations, mission planning, monitoring, and product handling."
+    },
+    "Program Management": {
+      "value": 3600,
+      "notes": "Includes systems engineering, project management, product assurance, configuration management, mission analysis support, and procurement oversight."
+    },
+    "Subtotal_Pre_Contingency": {
+      "value": 34800
+    },
+    "Contingency": {
+      "percentage": 27,
+      "value": 9396,
+      "rationale": "High end of recommended Phase 0 range applied due to early maturity, unspecified launch vehicle, unresolved data-volume/downlink concept, open propulsion decision, and incomplete payload performance details."
+    },
+    "Total_ROM_Cost": {
+      "value": 44196
+    }
+  },
+  "range_estimate": {
+    "low_case": 36000,
+    "high_case": 56000,
+    "notes": "Indicative Phase 0 uncertainty band reflecting early mission definition, launch ambiguity, payload performance uncertainty, and immature ground/data architecture."
+  },
+  "cost_drivers": [
+    "1 m GSD optical EO payload performance ambition",
+    "Pointing stability and ADCS performance needed for imaging quality",
+    "Payload data volume and resulting communications/downlink architecture",
+    "Single-satellite non-recurring engineering burden",
+    "Launch procurement strategy and final launch vehicle selection",
+    "Qualification and test approach appropriate for 3-year LEO mission life"
+  ],
+  "not_included_or_poorly_defined": [
+    "Insurance",
+    "VAT/taxes/duties",
+    "Customer-furnished equipment impacts",
+    "Extensive image analytics or commercial service platform build-out",
+    "Dedicated global ground station network beyond a lean baseline concept",
+    "Constellation scaling effects",
+    "Major redesign due to later security, encryption, or regulatory requirements",
+    "Unusual disposal or propulsion requirements if later imposed"
+  ],
+  "phase0_rom_method_note": "Estimate derived from a top-down small-satellite Earth observation cost analogy cross-checked with mass-informed parametric reasoning and engineering judgment. Because requirements remain incomplete and several key architectural choices are open, the estimate should be treated as a planning placeholder only."
+}
+
+
+[2026-05-01T11:11:05.610644Z] Second parse/validation failure: 14 validation errors for CostOutput
+cost_breakdown.0.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Spacecraft ...d downlink capability.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.0.basis
+  Field required [type=missing, input_value={'category': 'Spacecraft ...d downlink capability.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.1.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Integration...e preparation support.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.1.basis
+  Field required [type=missing, input_value={'category': 'Integration...e preparation support.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.2.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Launch', 'v... with MVP assumptions.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.2.basis
+  Field required [type=missing, input_value={'category': 'Launch', 'v... with MVP assumptions.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.3.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Ground Segm...l service outsourcing.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.3.basis
+  Field required [type=missing, input_value={'category': 'Ground Segm...l service outsourcing.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.4.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Operations'...modest service levels.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.4.basis
+  Field required [type=missing, input_value={'category': 'Operations'...modest service levels.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.5.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Program Man... and early operations.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.5.basis
+  Field required [type=missing, input_value={'category': 'Program Man... and early operations.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.6.cost_kEUR
+  Field required [type=missing, input_value={'category': 'Contingency...d disposal compliance.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+cost_breakdown.6.basis
+  Field required [type=missing, input_value={'category': 'Contingency...d disposal compliance.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "NewSat",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "basis_of_estimate": "Parametric model calibrated by analogy to small LEO Earth observation satellites, supplemented with engineering judgment due to limited Phase 0 definition.",
+  "confidence": "LOW",
+  "cost_breakdown": [
+    {
+      "category": "Spacecraft Hardware",
+      "value_kEUR": 15400,
+      "notes": "Includes small EO spacecraft bus sized around ~139 kg wet mass and a ~40 kg class optical payload with moderate pointing, storage, and downlink capability."
+    },
+    {
+      "category": "Integration & Test",
+      "value_kEUR": 3900,
+      "notes": "Includes spacecraft AIT, environmental testing, payload-spacecraft integration, functional verification, and launch site preparation support."
+    },
+    {
+      "category": "Launch",
+      "value_kEUR": 7000,
+      "notes": "Assumes rideshare procurement to a compatible ~550 km SSO-like orbit. Launch vehicle is not specified, so this is a placeholder ROM consistent with MVP assumptions."
+    },
+    {
+      "category": "Ground Segment",
+      "value_kEUR": 2600,
+      "notes": "Includes mission control, TT&C capability, payload data reception interfaces, processing chain, and data delivery tooling. Assumes limited ground network scope and partial service outsourcing."
+    },
+    {
+      "category": "Operations",
+      "value_kEUR": 3000,
+      "notes": "Includes commissioning and 3 years of routine mission operations, flight dynamics support, payload planning, anomaly response, and data operations at modest service levels."
+    },
+    {
+      "category": "Program Management",
+      "value_kEUR": 2800,
+      "notes": "Includes systems engineering, project management, product assurance, configuration management, procurement management, and reviews through launch and early operations."
+    },
+    {
+      "category": "Contingency",
+      "value_kEUR": 8670,
+      "notes": "Applied at 25% of pre-contingency estimate due to early Phase 0 maturity, unresolved launcher/ground segment/data-rate assumptions, and open questions on propulsion, image quality, and disposal compliance."
+    }
+  ],
+  "total_cost_kEUR": 43370,
+  "assumptions": [
+    "Single spacecraft mission only; no constellation, replenishment units, or on-orbit spare included.",
+    "Mission is implemented as a small LEO Earth observation satellite with one optical imaging payload consistent with 1 m GSD and 40 km swath objectives.",
+    "Payload development is assumed to be new-space/commercial style and not a fully bespoke high-end governmental instrument program.",
+    "Launch is assumed to be procured as a rideshare or similarly cost-efficient service to a compatible 550 km near-sun-synchronous orbit.",
+    "Ground segment assumes modest throughput, limited station assets, and some use of commercial or shared infrastructure rather than a fully dedicated global network.",
+    "Operations staffing is assumed lean, with automation and routine imaging operations, over a 3-year post-commissioning life.",
+    "Estimate excludes VAT, customer-furnished equipment outside stated scope, financing costs, insurance, major regulatory delays, and unusual cybersecurity/export-control implementation burdens.",
+    "Estimate excludes significant non-recurring technology maturation if the payload optical system or ADCS performance must exceed typical smallsat heritage."
+  ],
+  "recommendations": [
+    "Refine launch assumptions by selecting target launcher class, rideshare strategy, and dispenser/interface constraints; launch and AIT costs could shift materially.",
+    "Close payload performance details such as spectral bands, radiometric quality, stability, and calibration concept; spacecraft hardware cost is highly sensitive to these parameters.",
+    "Quantify daily image data volume and latency requirements to refine communications, onboard storage, ground segment, and operations cost.",
+    "Decide whether propulsion is required for collision avoidance, drag makeup, and disposal support; this affects spacecraft hardware, AIT, and operations costs.",
+    "Develop explicit analogies to comparable flown small EO missions if available to improve estimate confidence from LOW toward MEDIUM.",
+    "Treat this as a non-contractual preliminary planning estimate only, suitable for Phase 0 trade studies rather than procurement or commitment."
+  ]
+}
+
+
+[2026-05-01T11:24:56.638386Z] First parse/validation failure: 3 validation errors for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...crease substantially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+assumptions
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...crease substantially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...crease substantially.']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{"mission_name":"LunaObserver-1","estimate_type":"Phase 0 ROM","currency":"kEUR","basis_of_estimate":{"primary":"ROM engineering estimate","methods":["parametric model","analogy","engineering judgment"],"rationale":"Phase 0 estimate derived from small lunar orbiter analogies and subsystem-level engineering judgment using provided dry mass (75 kg), wet mass (159 kg), 10 kg hyperspectral payload class, Falcon 9 rideshare launch assumption, direct-to-Earth lunar communications, significant onboard propulsion for transfer/LOI/orbit maintenance, and 2-year mission lifetime. Large uncertainty remains in rideshare injection conditions, delta-V budget, data volume/downlink rate, and pointing performance."},"confidence":"LOW","cost_breakdown_kEUR":{"spacecraft_hardware":27800,"integration_and_test":9200,"launch":14000,"ground_segment":4200,"operations":6800,"program_management":6400,"contingency":17160},"contingency_pct":24,"total_cost_kEUR":85560,"key_assumptions":["Falcon 9 rideshare cost basis includes only a shared launch service allocation and does not assume a dedicated translunar injection service beyond what is available in the selected rideshare architecture.","Spacecraft is a small lunar orbiter with substantial propulsion capability included in bus hardware costs to achieve and maintain 100 km circular low lunar orbit.","Payload is a single 10 kg hyperspectral imager with moderate complexity and no large deployable instrument structures.","Ground segment uses largely existing commercial/institutional stations with modest mission-specific adaptation rather than a fully new deep-space network build-out.","Operations concept assumes a lean team with routine science, navigation, and anomaly support over a 2-year operational life.","Program is Phase 0/pre-Phase A maturity with significant unresolved requirements in pointing, data rate, calibration, and delta-V, justifying elevated contingency."],"notes":["Estimate is rough-order-of-magnitude only and not a contractual, bid, or procurement price.","Launch and operations costs for lunar missions are highly sensitive to actual rideshare trajectory/injection conditions, required navigation support, and communications service acquisition.","If the selected rideshare does not materially reduce transfer energy needs, spacecraft hardware and/or launch-related costs could increase substantially."]}
+
+
+[2026-05-01T11:25:13.340398Z] Second parse/validation failure: 1 validation error for CostOutput
+cost_breakdown
+  Input should be a valid list [type=list_type, input_value={'Spacecraft Hardware': 2...0, 'Contingency': 17050}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+{
+  "mission_name": "LunaObserver-1",
+  "phase": "Phase 0",
+  "currency": "kEUR",
+  "estimate_type": "ROM",
+  "estimate_basis": "Phase 0 ROM estimate based on parametric model calibrated by analogy to small deep-space/lunar orbiter missions and engineering judgment. Primary drivers are ~75 kg dry mass, ~159 kg wet mass, 10 kg hyperspectral payload, direct-to-Earth lunar communications, onboard propulsion for translunar/lunar orbit insertion support, Falcon 9 rideshare launch assumption, and 2-year mission lifetime.",
+  "confidence": "LOW",
+  "cost_breakdown": {
+    "Spacecraft Hardware": 28500,
+    "Integration & Test": 9500,
+    "Launch": 12000,
+    "Ground Segment": 4200,
+    "Operations": 6800,
+    "Program Management": 7200,
+    "Contingency": 17050
+  },
+  "total_cost_kEUR": 85250,
+  "assumptions": [
+    "The estimate is a non-contractual Phase 0 rough-order-of-magnitude cost and is not a procurement quote.",
+    "A small lunar orbiter spacecraft bus is developed or procured to support a 10 kg, 50 W hyperspectral payload in 100 km circular low lunar orbit.",
+    "Dry mass of approximately 75 kg and wet mass of approximately 159 kg are used as principal sizing inputs.",
+    "The spacecraft includes propulsion capability for transfer correction, lunar orbit insertion, circularization, orbit maintenance, momentum unloading support, and end-of-life maneuvers.",
+    "Launch is assumed on Falcon 9 rideshare or comparable shared launch service with additional mission-specific integration and trajectory accommodation, but without dedicated launch procurement.",
+    "Direct-to-Earth communications are assumed, with no dedicated relay constellation or lunar relay service procurement included.",
+    "Ground segment assumes use of existing commercial/institutional ground stations with moderate customization rather than construction of a new antenna network.",
+    "Operations estimate covers launch and early orbit, transfer, lunar orbit insertion, commissioning, 2 years of nominal operations, anomaly response, science planning support, and end-of-life activities.",
+    "Science data processing and archive support are included only at a modest mission level and do not represent a large stand-alone science exploitation program.",
+    "Program management includes systems engineering, mission assurance, configuration management, product assurance, schedule/cost control, and Phase A/B/C/D management overhead at a small-mission scale.",
+    "A contingency of approximately 25% on pre-contingency cost is applied because of low maturity and unresolved key drivers including delta-V, rideshare injection conditions, telecom data volume, and pointing performance.",
+    "Taxes, customs, financing, agency overhead outside project PM, and major reserve for launch delay rebooking are excluded unless embedded in supplier pricing."
+  ],
+  "recommendations": [
+    "Refine launch injection and rideshare separation conditions first; this is the largest uncertainty because propulsion sizing and mission architecture can change materially.",
+    "Develop a preliminary delta-V budget for transfer correction, lunar orbit insertion, circularization, maintenance, momentum management, and disposal to improve hardware and operations estimates.",
+    "Define pointing accuracy, stability, jitter, and image smear requirements to better size ADCS and payload accommodation costs.",
+    "Quantify daily science data volume, onboard storage, downlink rate, and contact strategy to refine communications, ground segment, and operations costs.",
+    "Assess whether a hosted bus, heritage small deep-space platform, or high-TRL avionics set can be used to reduce development and I&T cost.",
+    "Perform a preliminary schedule and staffing profile for Phases A through E to validate program management and operations allocations.",
+    "Revisit contingency after propulsion architecture, launch interface, and payload performance requirements mature; contingency may remain near the high end until these are closed."
+  ]
+}
+
+
+[2026-05-01T11:31:41.843293Z] First parse/validation failure: 2 validation errors for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...: 52000, 'high': 90000}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...: 52000, 'high': 90000}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{"mission_name":"LunaObserver-1","phase":"Phase 0","estimate_type":"ROM","currency":"kEUR","estimate_basis":{"primary":"ROM engineering estimate using dry/wet mass, payload class, lunar orbiter mission complexity, Falcon 9 rideshare launch assumption, and 2-year mission lifetime","method":"parametric model with analogy and engineering judgment","references":"Small planetary orbiter / lunar orbiter class missions with remote-sensing payloads; adjusted for lunar transfer/orbit insertion complexity and low maturity of current concept"},"assumptions":["111 kg dry mass and 191 kg wet mass used as primary sizing inputs","Mission is a small lunar orbiter carrying a 10 kg hyperspectral imager with moderate pointing and data handling needs","Falcon 9 rideshare price covers only rideshare launch service to provider-defined injection; additional transfer/orbit insertion capability is included in spacecraft cost via propulsion subsystem sizing","2-year nominal operations with modest science team and outsourced/partner ground network usage","No major new technology development beyond adaptation/qualification of existing smallsat-class subsystems for lunar environment","Ground segment assumes leased ground station services plus mission operations and science data processing capability","Phase 0 definition is immature, with major uncertainty in transfer architecture, delta-v, telecom/data volume, autonomy, and disposal implementation"],"cost_breakdown_kEUR":{"spacecraft_hardware":23800,"integration_and_test":8200,"launch":7000,"ground_segment":4200,"operations":6800,"program_management":5600,"contingency":13920},"contingency_policy":{"percentage":25,"basis":"High Phase 0 uncertainty and planetary/lunar mission complexity; selected near upper end of recommended 20-30% range"},"total_cost_kEUR":69520,"confidence":"LOW","notes":["This is a non-contractual Phase 0 rough-order-of-magnitude estimate, not a procurement quotation or commitment.","Estimate includes all required mission cost categories and reflects lunar mission complexity beyond a typical LEO smallsat.","Largest cost drivers are propulsion/mission design uncertainty, lunar communications and operations concept, payload calibration/data system needs, and environmental qualification for lunar transfer and orbit.","Launch cost is highly sensitive to the actual rideshare contract scope and injection conditions; if the rideshare does not provide a lunar-transfer-compatible drop-off, total mission cost could increase materially.","If strong analogies, mature subsystem selections, and a validated trajectory/ground segment concept become available in Phase A, estimate uncertainty could narrow substantially."],"range_kEUR":{"low":52000,"high":90000}}
+
+
+[2026-05-01T11:31:53.453562Z] Second parse/validation failure: 1 validation error for CostOutput
+cost_breakdown
+  Input should be a valid list [type=list_type, input_value={'Spacecraft Hardware': 2...0, 'Contingency': 17250}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/list_type
+{
+  "mission_name": "LunaObserver-1",
+  "phase": "Phase 0",
+  "currency": "kEUR",
+  "estimate_type": "ROM",
+  "estimate_basis": {
+    "primary_method": "ROM engineering estimate using parametric scaling from dry/wet mass, planetary small-orbiter mission class, payload complexity, launch assumption, and 2-year mission lifetime",
+    "secondary_method": "analogy and engineering judgment",
+    "notes": "Estimate is non-contractual and intended only for early Phase 0 feasibility/planning. Lunar transfer/orbit insertion architecture, rideshare injection conditions, propulsion sizing, communications concept, and operations concept maturity remain key cost drivers."
+  },
+  "assumptions": [
+    "Spacecraft wet mass is approximately 191 kg and dry mass is approximately 111 kg based on the provided mass output.",
+    "Mission uses Falcon 9 rideshare for initial launch service, but additional transfer/orbit insertion capability is spacecraft-provided.",
+    "Spacecraft is a small lunar orbiter with a 10 kg hyperspectral payload and moderate pointing/performance requirements.",
+    "Ground segment uses a modest dedicated mission operations capability with procured lunar communications support rather than a fully owned deep-space network.",
+    "Nominal operations duration is 2 years after commissioning.",
+    "Phase 0 design maturity is low and several mission-defining items remain open, especially propulsion and communications sizing."
+  ],
+  "cost_breakdown": {
+    "Spacecraft Hardware": 24800,
+    "Integration & Test": 9300,
+    "Launch": 14000,
+    "Ground Segment": 5200,
+    "Operations": 7600,
+    "Program Management": 8100,
+    "Contingency": 17250
+  },
+  "total_cost_kEUR": 86250,
+  "contingency_pct": 25,
+  "confidence": "LOW",
+  "confidence_rationale": "Normal Phase 0 estimate with substantial uncertainty in lunar transfer architecture, propulsion delta-v, rideshare delivery conditions, science data volume, and communications/ground-network needs. No strong direct costed analogue was provided.",
+  "cost_range_kEUR": {
+    "low": 69000,
+    "most_likely": 86250,
+    "high": 112000
+  },
+  "recommendations": [
+    "Close the rideshare injection definition and transfer architecture first; this is the largest driver of launch, propulsion, integration, and operations cost uncertainty.",
+    "Perform a mission design and delta-v study for transfer correction, lunar orbit insertion, maintenance, and disposal to refine spacecraft hardware and contingency.",
+    "Develop a first-order communications and ground-network concept including daily data volume, contact time, antenna sizing, and external network service assumptions.",
+    "Refine payload accommodation, pointing stability, and thermal requirements to improve hardware and test estimates.",
+    "Revisit the estimate in Phase A with subsystem vendor quotes or explicit mission analogies to improve confidence."
+  ],
+  "disclaimer": "This is a rough-order-of-magnitude Phase 0 planning estimate only and not a contractual, budgetary, or procurement commitment."
+}
+
+
+[2026-05-01T11:36:40.862751Z] First parse/validation failure: 2 validation errors for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...de project accounting']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...de project accounting']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "LunaObserver-1",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "estimate_basis": {
+    "primary_method": "ROM engineering estimate using parametric model and engineering judgment",
+    "secondary_method": "Analogy to small deep-space/small lunar orbiter missions with Earth-Moon communications and propulsion-intensive lunar capture",
+    "inputs_used": {
+      "mission_type": "Lunar Orbit Remote Sensing",
+      "orbit": "Low Lunar Orbit, 100 km circular",
+      "lifetime_years": 2.0,
+      "launch_vehicle": "Falcon 9 rideshare",
+      "payload_description": "Hyperspectral imager, 10 kg, 50 W",
+      "dry_mass_kg": 133.0,
+      "wet_mass_kg": 253.0
+    },
+    "notes": [
+      "Estimate is a rough-order-of-magnitude Phase 0 cost indication only and is not a contractual, bid, or procurement price.",
+      "Cost is driven upward versus LEO smallsats by lunar transfer/orbit insertion propulsion, deep-space communications, autonomy, thermal/radiation robustness, and 2-year operations.",
+      "Launch assumption is limited to Falcon 9 rideshare accommodation; actual lunar-transfer-compatible rideshare pricing and availability are mission-opportunity dependent and a major uncertainty."
+    ]
+  },
+  "assumptions": [
+    "Spacecraft is a small lunar orbiter in the ~133 kg dry / ~253 kg wet class with one 10 kg hyperspectral payload.",
+    "A rideshare-compatible launch and transfer architecture exists and does not require purchase of a dedicated launcher.",
+    "Ground segment uses a mixed commercial/agency service approach rather than building a full bespoke deep-space network.",
+    "Mission includes development through flight model, environmental test, launch campaign support, commissioning, and 2 years of routine operations.",
+    "Phase 0 estimate excludes VAT, financing, reserves held outside project, and major science team/data exploitation funding beyond mission operations.",
+    "No major technology maturation program is included beyond normal engineering development."
+  ],
+  "cost_breakdown_kEUR": {
+    "Spacecraft_Hardware": 26800,
+    "Integration_and_Test": 8700,
+    "Launch": 9500,
+    "Ground_Segment": 4200,
+    "Operations": 6400,
+    "Program_Management": 7600,
+    "Contingency": 15810
+  },
+  "total_cost_kEUR": 79010,
+  "contingency_pct": 25,
+  "contingency_rationale": "25% applied due to Phase 0 uncertainty, immature propulsion and telecom definition, unclear lunar-transfer rideshare conditions, and unresolved data-rate/pointing requirements. This is within the recommended 20-30% range for low-maturity mission concepts.",
+  "confidence": "LOW",
+  "confidence_rationale": [
+    "Phase 0 concept with significant open questions in delta-v, telecom architecture, payload data volume, and pointing performance.",
+    "Launch and transfer concept is not fully defined; lunar rideshare arrangements can materially change cost.",
+    "No strong one-to-one cost analogy was provided, so estimate remains ROM only."
+  ],
+  "cost_rationale_by_category": {
+    "Spacecraft_Hardware": "Includes spacecraft bus development/procurement, payload integration at spacecraft level, propulsion subsystem for lunar transfer support and LOI-related mission needs, deep-space-capable telecom, ADCS for nadir-pointed remote sensing, power, thermal, avionics, structure, harness, and flight software. Elevated above typical LEO smallsat cost because lunar mission robustness and autonomy requirements are higher.",
+    "Integration_and_Test": "Includes subsystem integration, spacecraft AIT, environmental test campaign, functional/performance testing, propulsion integration, mission simulations, launch site processing, and documentation/certification support for rideshare compliance.",
+    "Launch": "Assumes purchase of a Falcon 9 rideshare-class launch service allocation or equivalent lunar-transfer-compatible accommodation. This is a highly uncertain placeholder because standard LEO rideshare pricing may not apply directly to lunar injection architectures.",
+    "Ground_Segment": "Includes mission control system setup, ground software/tools, communications service integration, flight dynamics support setup, data handling pipeline for hyperspectral products at a basic mission-enabling level, and network service preparation.",
+    "Operations": "Includes LEOP, transfer operations, lunar orbit insertion support, commissioning, routine flight control, flight dynamics/navigation, anomaly response, telecom service usage, and science/housekeeping downlink support over 2 years.",
+    "Program_Management": "Includes systems engineering, mission assurance/product assurance, configuration/data management, project control, reviews, supplier management, and administrative overhead typical of a small interplanetary/lunar mission development.",
+    "Contingency": "Management reserve for technical and programmatic uncertainty at concept stage."
+  },
+  "unit_cost_indicators": {
+    "cost_per_dry_kg_kEUR_per_kg": 594.06,
+    "cost_per_wet_kg_kEUR_per_kg": 312.29
+  },
+  "range_kEUR": {
+    "low": 63000,
+    "most_likely": 79010,
+    "high": 99000
+  },
+  "range_rationale": "Spread reflects uncertainty in propulsion architecture, launch opportunity packaging, telecom/data-rate closure, lunar operations concept, and whether additional ground network or payload calibration capability is required.",
+  "exclusions": [
+    "Science team funding beyond mission operations baseline",
+    "Extensive archive/science exploitation program",
+    "Major new technology development campaigns",
+    "Dedicated launcher procurement",
+    "Insurance",
+    "VAT/taxes and customs",
+    "Agency-side retained institutional labor outside project accounting"
+  ]
+}
+
+
+[2026-05-01T12:11:50.368424Z] First parse/validation failure: 2 validation errors for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...inal procurement cost.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+recommendations
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...inal procurement cost.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "LunaObserver-1",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "estimate_basis": {
+    "primary_method": "ROM engineering estimate",
+    "methods_used": [
+      "parametric model using dry/wet mass and mission class",
+      "analogy to small lunar/deep-space orbiter missions",
+      "engineering judgment for immature subsystems and rideshare-lunar transfer architecture"
+    ],
+    "basis_notes": "This is a non-contractual rough-order-of-magnitude estimate for Phase 0 only. Estimate is driven primarily by a small lunar orbiter spacecraft with ~80.4 kg dry mass, ~135.6 kg wet mass, a 10 kg hyperspectral payload, Falcon 9 rideshare launch assumption, lunar transfer/orbit insertion propulsion onboard, and 2-year mission operations."
+  },
+  "inputs_summary": {
+    "mission_type": "Lunar Orbit Remote Sensing",
+    "orbit": "Low Lunar Orbit, 100 km circular",
+    "lifetime_years": 2.0,
+    "launch_vehicle": "Falcon 9 rideshare",
+    "payload": "Hyperspectral imager, 10 kg, 50 W",
+    "total_dry_mass_kg": 80.4,
+    "total_wet_mass_kg": 135.6
+  },
+  "cost_breakdown_kEUR": {
+    "Spacecraft_Hardware": 28500,
+    "Integration_and_Test": 9800,
+    "Launch": 9500,
+    "Ground_Segment": 4200,
+    "Operations": 7600,
+    "Program_Management": 7300,
+    "Contingency": 16720
+  },
+  "subtotal_pre_contingency_kEUR": 66900,
+  "total_cost_kEUR": 83620,
+  "contingency_pct": 25,
+  "contingency_rationale": "A 25% contingency is applied due to Phase 0 maturity, significant uncertainty in rideshare injection conditions, lunar transfer architecture, propulsion delta-v, communications/data volume closure, and pointing/performance requirements. This is appropriate for an early lunar orbiter concept with several unresolved system drivers.",
+  "category_notes": {
+    "Spacecraft_Hardware": "Includes spacecraft bus subsystems, payload accommodation/integration at hardware level, propulsion system, avionics, telecom, power, thermal, structure, ADCS, harness, and flight software development needed to realize a small lunar orbiter.",
+    "Integration_and_Test": "Includes AIT planning, engineering model support as needed, environmental test campaign, propulsion integration, payload-spacecraft integration, system verification, and launch site processing contribution.",
+    "Launch": "Assumes Falcon 9 rideshare-class procurement and associated launch integration/services, but with substantial uncertainty because translunar-compatible rideshare opportunity and injection conditions are not fully defined.",
+    "Ground_Segment": "Includes mission control setup, flight dynamics support tools, telecom service setup, ground software, science data handling pipeline at initial capability, and network/service integration.",
+    "Operations": "Includes commissioning, flight dynamics, routine spacecraft operations, payload operations, anomaly response, mission planning, and science data processing/archiving for a 2-year mission.",
+    "Program_Management": "Includes systems engineering, project management, mission assurance, product assurance/quality, configuration management, procurement support, reviews, and administrative overhead at ROM level.",
+    "Contingency": "Programmatic and technical reserve applied on top of subtotal; not a substitute for later phase bottom-up reserves."
+  },
+  "assumptions": [
+    "The spacecraft provides the propulsion required for transfer correction, lunar orbit insertion, circularization, maintenance, and end-of-life functions.",
+    "A Falcon 9 rideshare opportunity exists with mission-compatible separation conditions and acceptable accommodation constraints.",
+    "No unusually burdensome regulatory, export, spectrum, or planetary protection costs are incurred beyond normal mission implementation practice.",
+    "Ground segment is a modest mission-specific setup with partial use of existing network/services rather than a fully dedicated deep-space network buildout.",
+    "Science data volume and telecom architecture remain within the capability of a small lunar orbiter using a moderate-cost lunar communications solution.",
+    "The payload is developmental but not a first-of-its-kind flagship-class instrument."
+  ],
+  "key_cost_drivers": [
+    "Lunar transfer and orbit insertion propulsion architecture uncertainty",
+    "Rideshare launch compatibility and actual translunar injection conditions",
+    "Deep-space/lunar communications performance and ground network needs",
+    "Hyperspectral payload data volume, calibration concept, and onboard storage needs",
+    "ADCS performance required for imaging stability and pointing knowledge",
+    "2-year lunar operations and flight dynamics support"
+  ],
+  "confidence": "LOW",
+  "confidence_notes": "Confidence remains LOW because this is a Phase 0 estimate with no firm transfer architecture, no closed telecom/data budget, limited payload performance definition, and no confirmed launch/injection scenario. A stronger analogy set and subsystem definition would be needed to justify MEDIUM confidence.",
+  "notional_ranges_kEUR": {
+    "likely_range_low": 67000,
+    "likely_range_high": 105000
+  },
+  "disclaimer": "This estimate is a preliminary rough-order-of-magnitude planning figure for Phase 0 studies only. It is not a contractual price, supplier quotation, or final procurement cost."
+}
+
+
+[2026-05-01T12:12:04.255530Z] Second parse/validation failure: 1 validation error for CostOutput
+assumptions
+  Field required [type=missing, input_value={'mission_name': 'LunaObs...inal procurement cost.'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "LunaObserver-1",
+  "phase": "Phase 0",
+  "estimate_type": "ROM",
+  "currency": "kEUR",
+  "basis_of_estimate": {
+    "primary_method": "ROM engineering estimate using parametric sizing from dry/wet mass, payload class, lunar mission complexity, rideshare launch assumption, and 2-year mission lifetime",
+    "secondary_method": "Analogy and engineering judgment against small deep-space/lunar orbiter missions with similar payload and operations concepts",
+    "notes": "Estimate is a non-contractual Phase 0 rough-order-of-magnitude cost only and not a final procurement cost. Major uncertainty drivers are lunar transfer architecture, propulsion delta-v, telecom/ground segment sizing, payload performance requirements, and rideshare injection conditions."
+  },
+  "cost_breakdown": {
+    "spacecraft_hardware_kEUR": 28500,
+    "integration_and_test_kEUR": 8200,
+    "launch_kEUR": 7000,
+    "ground_segment_kEUR": 4200,
+    "operations_kEUR": 6800,
+    "program_management_kEUR": 7200,
+    "contingency_kEUR": 15500
+  },
+  "total_cost_kEUR": 77400,
+  "contingency_pct": 25,
+  "confidence": "LOW",
+  "key_assumptions": [
+    "Small lunar orbiter spacecraft sized from approximately 80.4 kg dry mass and 135.6 kg wet mass.",
+    "10 kg, 50 W hyperspectral imager is a new integration on a small lunar-capable bus rather than a fully flight-proven recurring product.",
+    "Launch uses Falcon 9 rideshare pricing logic plus mission-specific accommodations, deployment/interface hardware, and lunar-transfer-related integration allowance rather than dedicated launch pricing.",
+    "Spacecraft provides propulsion for transfer correction, lunar orbit insertion, circularization, maintenance, and end-of-life maneuvers.",
+    "Mission lifetime is 2 years in low lunar orbit with routine science downlink and calibration operations.",
+    "Ground segment assumes use of a modest dedicated mission operations capability plus purchased deep-space/lunar communications services rather than a fully owned deep-space network.",
+    "No unusually burdensome regulatory, planetary protection, or export-control cost growth beyond normal programmatic overhead is included.",
+    "Estimate excludes major institutional overheads external to the project, science team grants outside core mission operations, and reserve for major launch-market disruption."
+  ],
+  "recommendations": [
+    "Refine the lunar transfer and delta-v architecture first; propulsion and launch-interface assumptions are the largest ROM cost drivers.",
+    "Perform an early telecom and data-volume closure to better estimate lunar-distance ground service costs and onboard storage needs.",
+    "Define payload performance, pointing stability, and calibration requirements to improve hardware and integration estimates.",
+    "Validate rideshare compatibility, separation system, and injected trajectory assumptions with the launch provider before carrying this estimate into Phase A.",
+    "Revisit contingency after propulsion, communications, and operations concepts mature; current 25% reserve reflects substantial Phase 0 uncertainty."
+  ],
+  "notes": "Cost categories included per Phase 0 ROM rules: Spacecraft Hardware, Integration & Test, Launch, Ground Segment, Operations, Program Management, and Contingency. Values are preliminary planning estimates only and should not be used as contractual or final procurement cost."
+}
+
+
+[2026-05-01T12:15:57.801788Z] First parse/validation failure: 1 validation error for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'LunaObs..., 'recommendations': []}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "LunaObserver-1",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "basis_of_estimate": {
+    "primary_method": "ROM engineering estimate using parametric scaling from dry/wet mass, payload class, lunar mission complexity, rideshare launch assumption, and 2-year mission lifetime",
+    "secondary_method": "Analogy and engineering judgment against small lunar/planetary orbiter and deep-space smallsat concepts",
+    "notes": [
+      "Estimate is not a contractual or procurement quote.",
+      "Phase 0 uncertainty is high because propulsion architecture, lunar transfer profile, comms architecture, ground network approach, and payload performance requirements remain unresolved.",
+      "Dry mass used: 110.4 kg; wet mass used: 182.4 kg.",
+      "Mission complexity is higher than LEO smallsat missions due to lunar transfer, lunar orbit insertion/circularization, deep-space communications, autonomy, radiation/environmental design, and 2-year operations."
+    ]
+  },
+  "assumptions": {
+    "launch": "Falcon 9 rideshare procurement includes only the rideshare launch service to an intermediate/injection condition compatible with the selected transfer strategy; any dedicated transfer stage beyond standard rideshare accommodation is assumed to be part of spacecraft mission hardware/integration where needed.",
+    "spacecraft_class": "Small lunar orbiter with propulsion-capable bus and one hyperspectral payload",
+    "mission_lifetime_years": 2.0,
+    "payload": "Single 10 kg, 50 W hyperspectral imager",
+    "ground_segment": "Lean mission operations concept using shared or partially outsourced ground infrastructure rather than a fully dedicated deep-space network build-out",
+    "development_maturity": "Early Phase 0 / low maturity"
+  },
+  "cost_breakdown_kEUR": {
+    "Spacecraft_Hardware": 24800,
+    "Integration_and_Test": 7400,
+    "Launch": 7800,
+    "Ground_Segment": 3900,
+    "Operations": 5200,
+    "Program_Management": 6200,
+    "Contingency": 13800
+  },
+  "total_cost_kEUR": 69100,
+  "contingency_policy": {
+    "contingency_percent_on_precontingency": 25.0,
+    "rationale": "Upper-mid contingency selected within the required 20-30% range because this is a Phase 0 lunar mission with unresolved propulsion solution, transfer strategy, communications architecture, and payload performance/operations details."
+  },
+  "cost_rationale": {
+    "Spacecraft_Hardware": "Includes spacecraft bus subsystems, propulsion hardware, avionics, ADCS, power, communications, thermal, structure, harness, payload accommodation, flight software implementation allowance, and payload integration at subsystem level. Elevated above LEO smallsat cost due to lunar transfer/orbit capability and autonomy needs.",
+    "Integration_and_Test": "Includes system AIT, environmental test campaign, propulsion integration/test, mission simulation, software validation, launch campaign preparation, and lunar-mission-specific verification effort.",
+    "Launch": "ROM estimate for Falcon 9 rideshare-class procurement and associated launch service/interface costs for a small lunar mission concept. Value reflects uncertainty over actual rideshare profile and whether additional transfer accommodations are needed.",
+    "Ground_Segment": "Includes mission control system, ground software, communications/network service setup, orbit determination support setup, science processing pipeline initial deployment, and operations readiness testing.",
+    "Operations": "Includes 2 years of flight operations, navigation support, anomaly response, mission planning, routine commanding, data processing/archiving, and science operations support.",
+    "Program_Management": "Includes systems engineering, mission assurance/quality, configuration management, schedule/cost control, reviews, documentation, and administrative overhead at a lean but realistic project level.",
+    "Contingency": "Applied to all pre-contingency categories to reflect early-definition risk and major open technical questions."
+  },
+  "sanity_check_metrics": {
+    "precontingency_total_kEUR": 55300,
+    "cost_per_kg_dry_kEUR_per_kg": 625.9,
+    "cost_per_kg_wet_kEUR_per_kg": 378.8,
+    "hardware_fraction_of_precontingency_percent": 44.8,
+    "operations_fraction_of_precontingency_percent": 9.4
+  },
+  "confidence": "LOW",
+  "risk_drivers": [
+    "Propulsion architecture and true total delta-v requirement remain unresolved.",
+    "Rideshare injection conditions and need for additional transfer capability are not defined.",
+    "Lunar-distance communications solution and required ground network services are not fixed.",
+    "Hyperspectral data volume, onboard storage, and downlink rate requirements are not quantified.",
+    "ADCS performance needed for imaging/geolocation is not yet numerically defined.",
+    "Radiation and thermal qualification approach may materially change hardware and test costs."
+  ],
+  "likely_rom_range_kEUR": {
+    "low_case": 52000,
+    "most_likely": 69100,
+    "high_case": 91000
+  },
+  "notes": [
+    "This is a rough-order-of-magnitude Phase 0 estimate intended for concept screening and architecture trades only.",
+    "If a dedicated translunar kick stage, premium launch integration, or extensive deep-space ground network procurement is required, total mission cost would likely move toward or above the high-case range.",
+    "If significant flight heritage is available for the bus, propulsion, and payload interfaces, some reduction in hardware, I&T, and contingency may be possible in later phases."
+  ]
+}
+
+
+[2026-05-01T12:19:28.769498Z] First parse/validation failure: 1 validation error for CostOutput
+cost_breakdown
+  Field required [type=missing, input_value={'mission_name': 'AlpineW..., 'recommendations': []}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+{
+  "mission_name": "AlpineWatch-1",
+  "estimate_type": "Phase 0 ROM",
+  "currency": "kEUR",
+  "basis_of_estimate": {
+    "method": [
+      "parametric model",
+      "analogy",
+      "engineering judgment"
+    ],
+    "summary": "Phase 0 ROM estimate derived using Earth observation smallsat analogies and engineering judgment because detailed subsystem design and mass data are unavailable. Since mass output failed, a fallback assumption is used based on payload class, 8 kg payload mass, 35 W payload power, 5 m GSD / 40 km swath EO mission complexity, 550 km SSO-like orbit, unspecified rideshare launch, and 3-year mission lifetime.",
+    "key_assumptions": [
+      "Spacecraft dry mass assumed in the small EO microsatellite class, approximately 60-120 kg, centered near 85 kg for ROM costing.",
+      "Launch assumed as commercial rideshare to a 550 km sun-synchronous-compatible orbit because launch vehicle is not yet specified.",
+      "Ground segment assumed to use a modest leased ground-station service and a small mission operations/product processing chain suitable for MVP operations.",
+      "Operations concept assumed for one spacecraft over a 3-year lifetime with limited staffing and partially automated routine operations.",
+      "Payload development assumed to require moderate custom optical/instrument effort beyond a pure COTS CubeSat camera, driven by 5 m GSD performance."
+    ],
+    "estimate_limitations": [
+      "Not a contractual, bid, or procurement cost.",
+      "Mass, volume, data-rate, pointing stability, onboard storage, and propulsion architecture are not yet defined.",
+      "Regulatory, licensing, calibration, image processing pipeline maturity, and specific launcher interface costs are uncertain at this phase."
+    ]
+  },
+  "cost_breakdown_kEUR": {
+    "spacecraft_hardware": 12800,
+    "integration_and_test": 2900,
+    "launch": 4200,
+    "ground_segment": 1400,
+    "operations": 2400,
+    "program_management": 2300,
+    "contingency": 6500
+  },
+  "total_cost_kEUR": 32500,
+  "contingency": {
+    "percentage_of_pre_contingency": 25,
+    "rationale": "Applied at 25% due to Phase 0 maturity, failed mass estimate, unspecified launch vehicle, unresolved propulsion/debris mitigation approach, and open questions on payload performance and data volume."
+  },
+  "confidence": "LOW",
+  "cost_rationale_by_category": {
+    "spacecraft_hardware": "Includes EO payload, spacecraft bus, ADCS suitable for imaging, EPS, TTC, OBDH, structure, thermal control, harness, software, and unit-level procurements/in-house development. Elevated above basic CubeSat class due to 5 m GSD imaging performance and mission lifetime.",
+    "integration_and_test": "Includes spacecraft AIT, functional/environmental testing, payload-to-bus integration, system verification, launch campaign preparation, and documentation.",
+    "launch": "Assumes rideshare launch procurement to a compatible 550 km near-polar orbit, including typical integration and dispenser/interface-related costs at MVP scale.",
+    "ground_segment": "Includes mission control system setup, leased ground station integration, basic image receiving/processing infrastructure, and cybersecurity/IT setup for MVP operations.",
+    "operations": "Includes LEOP, commissioning, routine mission operations, flight dynamics support, anomaly response, scheduling, and basic payload/image operations over 3 years.",
+    "program_management": "Includes systems engineering, project management, mission assurance, product assurance support, configuration management, reviews, and business overhead at early program scale.",
+    "contingency": "Covers technical and programmatic uncertainty expected in a Phase 0 estimate with incomplete mass and architecture definition."
+  },
+  "reference_class": {
+    "mission_class": "small Earth observation microsatellite / high-performance smallsat MVP",
+    "assumed_spacecraft_mass_class": "approximately 60-120 kg dry mass equivalent class for ROM"
+  },
+  "notes": [
+    "Estimate is a rough-order-of-magnitude Phase 0 planning figure only.",
+    "If the mission is implemented as a larger bus, with higher onboard storage/downlink needs, stricter pointing performance, or a bespoke optical payload, total cost could increase materially.",
+    "If the payload can be implemented largely from flight-proven COTS components and launch is secured via subsidized rideshare, total cost could decrease."
+  ]
+}
